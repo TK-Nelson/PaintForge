@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, Menu, Heart, ShoppingCart, Camera } from 'lucide-react';
+import { Search, Filter, Menu, Heart, ShoppingCart, Camera, Bell } from 'lucide-react';
+
 
 // Sample paint data based on your mobile screens
 const samplePaints = [
@@ -160,15 +161,17 @@ const PaintDashboard = () => {
       
       {/* Side Menu */}
       <div className={`
-        fixed top-0 left-0 h-full bg-white z-50 transform transition-transform duration-300 ease-in-out
+        fixed top-0 left-0 h-screen bg-white z-50 transform transition-transform duration-300 ease-in-out
         ${showSideMenu ? 'translate-x-0' : '-translate-x-full'}
         w-3/4 lg:w-64 lg:translate-x-0 lg:relative lg:z-auto
       `}>
-        <div className="p-4 border-b border-gray-200">
+        {/* Logo */}
+        <div className="p-4 border-r border-gray-200 flex items-center" style={{ minHeight: '64px' }}>
+          {/* LOGO */}
           <h2 className="text-lg font-semibold text-gray-900">Paint Forge</h2>
         </div>
         
-        <nav className="p-4">
+        <nav className="p-4 h-fill border-r">
           <div className="space-y-2">
             {[
               { id: 'library', label: 'Paint Library', icon: '🎨' },
@@ -200,8 +203,8 @@ const PaintDashboard = () => {
   );
 
   const FilterModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end">
-      <div className="bg-white w-full rounded-t-xl p-6 max-h-96">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+      <div className="bg-white w-full max-w-md rounded-xl p-6 max-h-96 mx-4">
         <h3 className="text-lg font-semibold mb-4">List Filters</h3>
         
         <div className="space-y-4">
@@ -262,8 +265,8 @@ const PaintDashboard = () => {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Header */}
-        <div className="bg-gray-900 text-white px-4 py-3">
-          <div className="flex items-center justify-between">
+        <div className="bg-white border-b border-gray-200 px-4 flex items-center" style={{ minHeight: '64px' }}>
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
               <button 
                 onClick={() => setShowSideMenu(true)}
@@ -279,14 +282,20 @@ const PaintDashboard = () => {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Search className="w-6 h-6" />
-              <Filter className="w-6 h-6" />
+              <ShoppingCart className="w-6 h-6 text-gray-600" />
+              <Bell className="w-6 h-6 text-gray-600" />
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-semibold text-sm">
+                  JD
+                </div>
+                <span className="hidden lg:inline text-gray-700 font-medium text-sm">John Doe</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Tab Navigation - Mobile Only */}
-        <div className="bg-white border-b border-gray-200 lg:hidden">
+        <div className="bg-white border-gray-200 lg:hidden">
           <div className="flex">
             {[
               { id: 'library', label: 'Paint Library', icon: '🎨' },
@@ -311,28 +320,31 @@ const PaintDashboard = () => {
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="p-4 bg-white border-b border-gray-200">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search paints..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <button
-              onClick={() => setShowFilters(true)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2"
-            >
-              <Filter className="w-5 h-5 text-gray-400" />
-            </button>
-          </div>
-        </div>
-
         {/* Paint Grid */}
         <div className="p-4">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4" style={{ minHeight: '64px' }}>
+            <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
+            <div className="flex items-center space-x-3">
+              <div className="relative w-40">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(true)}
+                className="ml-2 p-2 rounded-full hover:bg-gray-100"
+              >
+                <Filter className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+          </div>
+            {/* Grid Items */}
           <div className="space-y-3">
             {filteredPaints.map(paint => (
               <PaintCard key={paint.id} paint={paint} />
