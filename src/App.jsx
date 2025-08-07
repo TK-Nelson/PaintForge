@@ -5,6 +5,21 @@ import SideMenu from './components/SideMenu';
 import FilterModal from './components/FilterModal';
 import paints from './data/paints';
 
+// Helper function to categorize paint colors by name or hex
+const getColorCategory = (paint) => {
+  const name = paint.name.toLowerCase();
+  const hex = paint.hexColor?.toLowerCase() || '';
+
+  if (name.includes('red') || ['#dc143c', '#dd482b'].includes(hex)) return 'red';
+  if (name.includes('blue') || ['#1f56aa', '#295a8a', '#1f8f9c'].includes(hex)) return 'blue';
+  if (name.includes('green') || ['#2ecc40'].includes(hex)) return 'green';
+  if (name.includes('black') || ['#1c1c1c'].includes(hex)) return 'black';
+  if (name.includes('grey') || name.includes('gray') || ['#a4a7a8', '#636769'].includes(hex)) return 'grey';
+  if (name.includes('brown') || ['#a67c52'].includes(hex)) return 'brown';
+  // Add more mappings as needed
+  return '';
+};
+
 const PaintDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -12,17 +27,91 @@ const PaintDashboard = () => {
   const [activeTab, setActiveTab] = useState('library');
   const [showSideMenu, setShowSideMenu] = useState(false);
 
-  // Filter paints based on search and filters
-  const filteredPaints = useMemo(() => {
-    return paints.filter(paint => {
-      const matchesSearch = paint.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        paint.brand.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesFilter = selectedFilter === 'all' ||
-        (selectedFilter === 'owned' && paint.isOwned) ||
-        (selectedFilter === 'favorites' && paint.isFavorite);
-      return matchesSearch && matchesFilter;
+  // Store filter modal state
+  const [filterState, setFilterState] = useState({
+    color: '',
+    sortBy: 'name', // Default to Alphabetical
+    brand: '',
+    paintType: '',
+  });
+
+  // Handle filter modal apply
+  const handleApplyFilters = (filters) => {
+    setFilterState(filters);
+  };
+
+  // Handle filter modal clear
+  const handleClearFilters = () => {
+    setFilterState({
+      color: '',
+      sortBy: '',
+      brand: '',
+      paintType: '',
     });
-  }, [searchTerm, selectedFilter]);
+  };
+
+  // Filtering logic
+  const filteredPaints = useMemo(() => {
+    return paints
+      .filter(paint => {
+        // Search filter
+        const matchesSearch =
+          paint.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          paint.brand.toLowerCase().includes(searchTerm.toLowerCase());
+
+        // Tab filter
+        const matchesTab =
+          selectedFilter === 'all' ||
+          (selectedFilter === 'owned' && paint.isOwned) ||
+          (selectedFilter === 'favorites' && paint.isFavorite);
+
+        // Brand filter
+        const matchesBrand =
+          !filterState.brand || paint.brand === filterState.brand;
+
+        // Paint type filter
+        const matchesType =
+          !filterState.paintType || paint.type === filterState.paintType;
+
+        // Color filter
+        const matchesColor =
+          !filterState.color || getColorCategory(paint) === filterState.color;
+
+        return (
+          matchesSearch &&
+          matchesTab &&
+          matchesBrand &&
+          matchesType &&
+          matchesColor
+        );
+      })
+      .sort((a, b) => {
+        if (filterState.sortBy === 'brand') {
+          return a.brand.localeCompare(b.brand);
+        }
+        if (filterState.sortBy === 'name') {
+          return a.name.localeCompare(b.name);
+        }
+        if (filterState.sortBy === 'name-desc') {
+          return b.name.localeCompare(a.name);
+        }
+        if (filterState.sortBy === 'color') {
+          return getColorCategory(a).localeCompare(getColorCategory(b));
+        }
+        return 0;
+      });
+  }, [searchTerm, selectedFilter, filterState]);
+
+  // Helper to count active filters (excluding defaults)
+  const getActiveFilterCount = () => {
+    let count = 0;
+    // Only count if not default
+    if (filterState.sortBy && filterState.sortBy !== 'name') count++;
+    if (filterState.brand && filterState.brand !== '') count++;
+    if (filterState.paintType && filterState.paintType !== '') count++;
+    if (filterState.color && filterState.color !== '') count++;
+    return count;
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 lg:flex">
@@ -99,7 +188,7 @@ const PaintDashboard = () => {
           <div className="flex items-center justify-between p-4 lg:min-h-16">
             <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
             <div className="flex items-center space-x-3">
-              <div className="relative w-40">
+              <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
@@ -111,9 +200,14 @@ const PaintDashboard = () => {
               </div>
               <button
                 onClick={() => setShowFilters(true)}
-                className="ml-2 p-2 rounded-full hover:bg-gray-100"
+                className="ml-2 p-2 rounded-full hover:bg-gray-100 relative"
               >
                 <Filter className="w-5 h-5 text-gray-500" />
+                {getActiveFilterCount() > 0 && (
+                  <span className="absolute -bottom-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow">
+                    {getActiveFilterCount()}
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -152,7 +246,14 @@ const PaintDashboard = () => {
         </div>
 
         {/* Filter Modal */}
-        {showFilters && <FilterModal setShowFilters={setShowFilters} />}
+        {showFilters && (
+          <FilterModal
+            setShowFilters={setShowFilters}
+            onApply={handleApplyFilters}
+            onClear={handleClearFilters}
+            currentFilters={filterState}
+          />
+        )}
       </div>
     </div>
   );

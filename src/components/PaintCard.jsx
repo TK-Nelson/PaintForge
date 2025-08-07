@@ -1,4 +1,5 @@
 import { Heart } from 'lucide-react';
+import { Package } from 'lucide-react'; // Import the owned icon (box icon)
 
 const PaintCard = ({ paint }) => (
   <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
@@ -17,7 +18,7 @@ const PaintCard = ({ paint }) => (
               <Heart className="w-4 h-4 text-red-500 fill-current" />
             )}
             {paint.isOwned && (
-              <div className="w-2 h-2 bg-green-500 rounded-full" />
+              <Package className="w-4 h-4 text-green-500" /> // Use owned icon
             )}
           </div>
         </div>
