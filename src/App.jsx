@@ -38,7 +38,7 @@ const PaintDashboard = () => {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-4 flex items-center" style={{ minHeight: '64px' }}>
+        <div className="bg-white border-b border-gray-200 px-4 flex items-center lg:min-h-16">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
               <button
@@ -96,7 +96,7 @@ const PaintDashboard = () => {
         {/* Paint Grid */}
         <div className="p-4">
           {/* Header */}
-          <div className="flex items-center justify-between p-4" style={{ minHeight: '64px' }}>
+          <div className="flex items-center justify-between p-4 lg:min-h-16">
             <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
             <div className="flex items-center space-x-3">
               <div className="relative w-40">
