@@ -135,13 +135,18 @@ const FilterModal = ({ setShowFilters, onApply, onClear, currentFilters }) => {
                   : 'text-black';
                 const borderColor = isSelected ? `border-[${color.color}]` : 'border-gray-300';
                 const bgColor = isSelected ? '' : 'bg-white';
+                // Determine the actual color value for the dot based on fontColor
+                const dotColor = isSelected
+                  ? (getContrastYIQ(color.color) === 'black' ? '#000' : '#fff')
+                  : color.color;
+
                 return (
                   <button
                     key={color.value}
                     type="button"
                     onClick={() => setSelectedColor(isSelected ? '' : color.value)}
                     className={`
-                      inline-flex items-center gap-x-1.5 px-3 py-1 rounded-full text-xs font-medium ring-1 ring-inset
+                      inline-flex items-center gap-x-1.5 px-3 py-1 rounded-md text-xs font-medium ring-1 ring-inset
                       border ${borderColor} ${bgColor} ${fontColor}
                       transition focus:outline-none
                       ${isSelected ? 'shadow' : ''}
@@ -158,7 +163,7 @@ const FilterModal = ({ setShowFilters, onApply, onClear, currentFilters }) => {
                     <span
                       className="flex-none rounded-full h-1.5 w-1.5"
                       style={{
-                        backgroundColor: isSelected ? '#2563eb' : color.color // #2563eb is Tailwind blue-600
+                        backgroundColor: dotColor
                       }}
                     />
                     {color.name}
