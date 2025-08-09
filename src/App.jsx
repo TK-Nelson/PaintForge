@@ -259,4 +259,6 @@ const PaintDashboard = () => {
   );
 };
 
-export default PaintDashboard;
+const App = () => <PaintDashboard />;
+
+export default App;
