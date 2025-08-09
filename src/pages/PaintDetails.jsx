@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import paints from '../data/paints';
 import SideMenu from '../components/SideMenu';
-import { ShoppingCart, Bell } from 'lucide-react';
+import { ShoppingCart, Bell, Heart, Package, Filter, Circle } from 'lucide-react';
 import DeltaE from 'delta-e';
 
 // Helper to convert hex to LAB (delta-e expects LAB)
@@ -138,14 +138,47 @@ const PaintDetail = () => {
           <div className="flex-1 p-4 overflow-y-auto">
             {tab === 'Similar Color' && (
               <div>
+                {/* Header with title, color wheel, and filter button */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-base font-semibold text-gray-900">Similar Colors</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      className="p-2 rounded-full hover:bg-gray-100"
+                      title="Set color relationships"
+                    >
+                      <Circle className="w-5 h-5 text-gray-500" />
+                    </button>
+                    <button
+                      className="p-2 rounded-full hover:bg-gray-100"
+                      title="Filter similar colors"
+                    >
+                      <Filter className="w-5 h-5 text-gray-500" />
+                    </button>
+                  </div>
+                </div>
                 {getSimilarPaints(paint, paints).map(similar => (
-                  <div key={similar.id} className="mb-2 flex items-center">
+                  <div key={similar.id} className="mb-2 flex items-center bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow px-3 py-2">
                     <div
-                      className="w-6 h-6 rounded mr-2 border"
+                      className="w-6 h-6 rounded mr-3 border"
                       style={{ backgroundColor: similar.hexColor }}
                     />
-                    <span>{similar.name}</span>
-                    <span className="ml-2 text-xs text-gray-500">ΔE {similar.deltaE.toFixed(2)}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center">
+                        <span className="text-sm font-medium text-gray-900 truncate">{similar.name}</span>
+                        <div className="flex items-center space-x-2 ml-2">
+                          {similar.isFavorite && (
+                            <Heart className="w-4 h-4 text-red-500 fill-current" />
+                          )}
+                          {similar.isOwned && (
+                            <Package className="w-4 h-4 text-green-500" />
+                          )}
+                        </div>
+                      </div>
+                      <span className="text-xs text-gray-500">
+                        {similar.brand}® {similar.type}
+                      </span>
+                    </div>
+                    <span className="ml-2 text-xs text-gray-500 flex-shrink-0">ΔE {similar.deltaE.toFixed(2)}</span>
                   </div>
                 ))}
               </div>
