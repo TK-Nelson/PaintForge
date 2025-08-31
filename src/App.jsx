@@ -22,7 +22,7 @@ const getColorCategory = (paint) => {
 
 const PaintDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [activeTab, setActiveTab] = useState('library');
   const [showSideMenu, setShowSideMenu] = useState(false);
@@ -61,6 +61,7 @@ const PaintDashboard = () => {
 
         // Tab filter
         const matchesTab =
+          selectedFilter === '' || // <-- Show all paints if filter is empty (initial load or Paint Library)
           selectedFilter === 'all' ||
           (selectedFilter === 'owned' && paint.isOwned) ||
           (selectedFilter === 'favorites' && paint.isFavorite);
@@ -169,7 +170,7 @@ const PaintDashboard = () => {
                 key={tab.id}
                 onClick={() => {
                   setActiveTab(tab.id);
-                  setSelectedFilter(tab.id === 'library' ? 'all' : tab.id);
+                  setSelectedFilter(tab.id === 'library' ? '' : tab.id);
                 }}
                 className={`flex-1 flex flex-col items-center py-3 px-2 ${
                   activeTab === tab.id ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
