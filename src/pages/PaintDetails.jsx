@@ -30,10 +30,29 @@ const PaintDetail = () => {
   }, [id]);
 
   const getSimilarPaints = (currentPaint, allPaints, threshold = 10) => {
+    // Determine comparison group
+    let filterFn = () => true;
+    if (currentPaint.colorGrouping && currentPaint.colorGrouping.toLowerCase().includes("metalic")) {
+      filterFn = p =>
+        p.id !== currentPaint.id &&
+        p.colorGrouping &&
+        p.colorGrouping.toLowerCase().includes("metalic");
+    } else if (currentPaint.type && currentPaint.type.toLowerCase().includes("shade")) {
+      filterFn = p =>
+        p.id !== currentPaint.id &&
+        p.type &&
+        p.type.toLowerCase().includes("shade");
+    } else {
+      filterFn = p =>
+        p.id !== currentPaint.id &&
+        (!p.colorGrouping || !p.colorGrouping.toLowerCase().includes("metalic")) &&
+        (!p.type || !p.type.toLowerCase().includes("shade"));
+    }
+
     const currentLab = hexToLab(currentPaint.baseHexColor || currentPaint.hexColor);
 
     const results = allPaints
-      .filter(p => p.id !== currentPaint.id)
+      .filter(filterFn)
       .map(paint => {
         const lab = hexToLab(paint.baseHexColor || paint.hexColor);
         const delta = DeltaE.getDeltaE00(
@@ -94,7 +113,7 @@ const PaintDetail = () => {
             fixed inset-0 z-50 bg-white flex flex-col h-full
             transition-transform duration-300 ease-in-out
             ${animate ? 'translate-x-0' : 'translate-x-full'}
-            lg:static lg:translate-x-0 lg:relative
+             lg:translate-x-0 lg:relative
           `}
           style={{ boxShadow: '0 0 24px 0 rgba(0,0,0,0.08)' }}
         >
