@@ -9,7 +9,7 @@ const PaintCard = ({ paint }) => (
       <div className="flex items-center p-4">
         <div 
           className="w-12 h-12 rounded-lg flex-shrink-0 border border-gray-300"
-          style={{ backgroundColor: paint.hexColor }}
+          style={{ background: paint.hexColor }}
         />
         <div className="ml-4 flex-1 min-w-0">
           <div className="flex items-center">

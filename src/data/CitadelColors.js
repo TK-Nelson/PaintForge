@@ -1,3 +1,37 @@
+function lighten(hex, percent) {
+  const num = parseInt(hex.replace("#", ""), 16);
+  let r = (num >> 16) + Math.round(255 * percent);
+  let g = ((num >> 8) & 0x00FF) + Math.round(255 * percent);
+  let b = (num & 0x0000FF) + Math.round(255 * percent);
+  r = Math.min(255, r);
+  g = Math.min(255, g);
+  b = Math.min(255, b);
+  return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
+}
+
+function darken(hex, percent) {
+  const num = parseInt(hex.replace("#", ""), 16);
+  let r = (num >> 16) * (1 - percent);
+  let g = ((num >> 8) & 0x00FF) * (1 - percent);
+  let b = (num & 0x0000FF) * (1 - percent);
+  r = Math.max(0, Math.round(r));
+  g = Math.max(0, Math.round(g));
+  b = Math.max(0, Math.round(b));
+  return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
+}
+
+function makeMetallicGradient(hex) {
+  const light = lighten(hex, 0.4);   // 40% lighter
+  const dark = darken(hex, 0.4);     // 40% darker
+  return `linear-gradient(135deg, ${hex} 0%, ${light} 40%, ${hex} 60%, ${dark} 100%)`;
+}
+
+function makeShadeGradient(hex) {
+  const light = lighten(hex, 0.4);   // 40% lighter
+  const dark = darken(hex, 0.4);     // 40% darker
+  return `linear-gradient(to bottom, ${light} 0%, ${hex} 50%, ${dark} 100%)`;
+}
+
 const CitadelColors = [
   {
     "id": 1,
@@ -309,7 +343,7 @@ const CitadelColors = [
     "id": 28,
     "name": "Nuln Oil",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#14100e",
     "colorGrouping": "Black / Grey",
@@ -405,9 +439,9 @@ const CitadelColors = [
     "id": 36,
     "name": "Carroburg Crimson",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
-    "hexColor": "a82a70",
+    "hexColor": "#a82a70",
     "colorGrouping": "Red",
     "isMetallic": false,
     "isOwned": false,
@@ -421,9 +455,8 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#ED3814",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isFavorite": false,
+    "isOwned": false
   },
   {
     "id": 38,
@@ -433,9 +466,8 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#F16C23",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isFavorite": false,
+    "isOwned": false
   },
   {
     "id": 39,
@@ -445,9 +477,8 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#F4874E",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isFavorite": false,
+    "isOwned": false
   },
   {
     "id": 40,
@@ -457,9 +488,8 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#F69B82",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isFavorite": false,
+    "isOwned": false
   },
   {
     "id": 41,
@@ -469,15 +499,14 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A74D42",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isFavorite": false,
+    "isOwned": false
   },
   {
     "id": 42,
     "name": "Fuegan Orange",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#c77e4d",
     "colorGrouping": "Orange",
@@ -549,7 +578,7 @@ const CitadelColors = [
     "id": 48,
     "name": "Casandora Yellow",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#fece5a",
     "colorGrouping": "Yellow",
@@ -861,7 +890,7 @@ const CitadelColors = [
     "id": 74,
     "name": "Biel-Tan Green",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#1ba169",
     "colorGrouping": "Green",
@@ -873,7 +902,7 @@ const CitadelColors = [
     "id": 75,
     "name": "Athonian Camoshade",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#6d8e44",
     "colorGrouping": "Green",
@@ -1053,7 +1082,7 @@ const CitadelColors = [
     "id": 90,
     "name": "Drakenhoff Nightshade",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#125899",
     "colorGrouping": "Blue",
@@ -1161,7 +1190,7 @@ const CitadelColors = [
     "id": 99,
     "name": "Druchi Violet",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#7a468c",
     "colorGrouping": "Purple",
@@ -1473,7 +1502,7 @@ const CitadelColors = [
     "id": 125,
     "name": "Reikland Fleshshade",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#ca6c4d",
     "colorGrouping": "Flesh",
@@ -1689,7 +1718,7 @@ const CitadelColors = [
     "id": 143,
     "name": "Seraphim Sepia",
     "brand": "Citadel",
-    "type": "Wash",
+    "type": "Shade",
     "code": "",
     "hexColor": "#d7824b",
     "colorGrouping": "Brown",
@@ -1811,7 +1840,7 @@ const CitadelColors = [
     "brand": "Citadel",
     "type": "Layer",
     "code": "",
-    "hexColor": "b77647",
+    "hexColor": "#b77647",
     "colorGrouping": "Metalic",
     "isMetallic": true,
     "isOwned": false,
@@ -1891,5 +1920,27 @@ const CitadelColors = [
   }
 ];
 
-export default CitadelColors
-;
+CitadelColors.forEach((paint) => {
+  // Store original hex color for LAB calculations
+  if (typeof paint.hexColor === "string" && paint.hexColor.startsWith("#")) {
+    paint.baseHexColor = paint.hexColor;
+  }
+  if (
+    paint.colorGrouping &&
+    paint.colorGrouping.toLowerCase().includes("metalic") &&
+    typeof paint.hexColor === "string" &&
+    paint.hexColor.startsWith("#")
+  ) {
+    paint.hexColor = makeMetallicGradient(paint.hexColor);
+  }
+  if (
+    paint.type &&
+    paint.type.toLowerCase().includes("shade") &&
+    typeof paint.hexColor === "string" &&
+    paint.hexColor.startsWith("#")
+  ) {
+    paint.hexColor = makeShadeGradient(paint.hexColor);
+  }
+});
+
+export default CitadelColors;

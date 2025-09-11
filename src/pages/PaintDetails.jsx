@@ -30,12 +30,12 @@ const PaintDetail = () => {
   }, [id]);
 
   const getSimilarPaints = (currentPaint, allPaints, threshold = 10) => {
-    const currentLab = hexToLab(currentPaint.hexColor);
+    const currentLab = hexToLab(currentPaint.baseHexColor || currentPaint.hexColor);
 
     const results = allPaints
       .filter(p => p.id !== currentPaint.id)
       .map(paint => {
-        const lab = hexToLab(paint.hexColor);
+        const lab = hexToLab(paint.baseHexColor || paint.hexColor);
         const delta = DeltaE.getDeltaE00(
           { L: currentLab[0], A: currentLab[1], B: currentLab[2] },
           { L: lab[0], A: lab[1], B: lab[2] }
@@ -44,9 +44,6 @@ const PaintDetail = () => {
       })
       .filter(paint => paint.deltaE <= threshold)
       .sort((a, b) => a.deltaE - b.deltaE);
-
-    // Log results for debugging
-    console.log('Similar paints (threshold 20):', results);
 
     return results;
   };
@@ -111,7 +108,7 @@ const PaintDetail = () => {
               lg:h-[40vh] lg:max-h-[calc(100vh-4rem)] lg:py-0
             "
             style={{
-              backgroundColor: paint.hexColor,
+              background: paint.hexColor,
               color: '#fff',
               height: 'auto',
               ...(window.innerWidth >= 1024
@@ -169,10 +166,23 @@ const PaintDetail = () => {
                       setShowPopup(true);
                     }}
                   >
+                    {/* Swatch: 48px square with similar color, 24px square centered with selected color */}
                     <div
-                      className="w-12 h-12 rounded mr-3 border"
-                      style={{ backgroundColor: similar.hexColor }}
-                    />
+                      className="relative w-12 h-12 rounded mr-3 border"
+                      style={{
+                        background: similar.hexColor
+                      }}
+                    >
+                      <div
+                        className="absolute top-1/2 left-1/2 rounded"
+                        style={{
+                          width: 24,
+                          height: 24,
+                          background: paint.hexColor,
+                          transform: 'translate(-50%, -50%)'
+                        }}
+                      />
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center">
                         <span className="text-sm font-medium text-gray-900 truncate">{similar.name}</span>

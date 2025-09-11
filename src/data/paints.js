@@ -7,5 +7,4 @@ const paints = [
   // ...ArmyPainterColors,
   // Add more brands here as needed
 ];
-
 export default paints;
