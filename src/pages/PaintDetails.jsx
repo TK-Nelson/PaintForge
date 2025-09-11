@@ -4,6 +4,8 @@ import paints from '../data/paints';
 import SideMenu from '../components/SideMenu';
 import { ShoppingCart, Bell, Heart, Package, Filter, Circle } from 'lucide-react';
 import DeltaE from 'delta-e';
+import PaintActionPopup from '../components/PaintDetailsPage/PaintDetailsPopup';
+
 
 // Helper to convert hex to LAB (delta-e expects LAB)
 import { hexToLab } from '../utils/color'; // You'll need to create this helper
@@ -19,13 +21,15 @@ const PaintDetail = () => {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const [activeTab, setActiveTab] = useState(TABS[0]);
   const [selectedFilter, setSelectedFilter] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedSimilar, setSelectedSimilar] = useState(null);
 
   useEffect(() => {
     setTimeout(() => setAnimate(true), 10);
     return () => setAnimate(false);
   }, [id]);
 
-  const getSimilarPaints = (currentPaint, allPaints, threshold = 50) => {
+  const getSimilarPaints = (currentPaint, allPaints, threshold = 10) => {
     const currentLab = hexToLab(currentPaint.hexColor);
 
     const results = allPaints
@@ -42,7 +46,7 @@ const PaintDetail = () => {
       .sort((a, b) => a.deltaE - b.deltaE);
 
     // Log results for debugging
-    console.log('Similar paints (threshold 50):', results);
+    console.log('Similar paints (threshold 20):', results);
 
     return results;
   };
@@ -157,9 +161,16 @@ const PaintDetail = () => {
                   </div>
                 </div>
                 {getSimilarPaints(paint, paints).map(similar => (
-                  <div key={similar.id} className="mb-2 flex items-center bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow px-3 py-2">
+                  <div
+                    key={similar.id}
+                    className="mb-2 flex items-center bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow px-3 py-2 cursor-pointer"
+                    onClick={() => {
+                      setSelectedSimilar(similar);
+                      setShowPopup(true);
+                    }}
+                  >
                     <div
-                      className="w-6 h-6 rounded mr-3 border"
+                      className="w-12 h-12 rounded mr-3 border"
                       style={{ backgroundColor: similar.hexColor }}
                     />
                     <div className="flex-1 min-w-0">
@@ -195,6 +206,11 @@ const PaintDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Popup for Paint Action (e.g., Add to Favorites, View Recipe) */}
+      {showPopup && selectedSimilar && (
+        <PaintActionPopup paint={selectedSimilar} onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
 };
