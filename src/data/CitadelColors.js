@@ -26,12 +26,6 @@ function makeMetallicGradient(hex) {
   return `linear-gradient(135deg, ${hex} 0%, ${light} 40%, ${hex} 60%, ${dark} 100%)`;
 }
 
-function makeShadeGradient(hex) {
-  const light = lighten(hex, 0.4);   // 40% lighter
-  const dark = darken(hex, 0.4);     // 40% darker
-  return `linear-gradient(to bottom, ${light} 0%, ${hex} 50%, ${dark} 100%)`;
-}
-
 const CitadelColors = [
   {
     "id": 1,
@@ -1921,10 +1915,6 @@ const CitadelColors = [
 ];
 
 CitadelColors.forEach((paint) => {
-  // Store original hex color for LAB calculations
-  if (typeof paint.hexColor === "string" && paint.hexColor.startsWith("#")) {
-    paint.baseHexColor = paint.hexColor;
-  }
   if (
     paint.colorGrouping &&
     paint.colorGrouping.toLowerCase().includes("metalic") &&
@@ -1933,14 +1923,7 @@ CitadelColors.forEach((paint) => {
   ) {
     paint.hexColor = makeMetallicGradient(paint.hexColor);
   }
-  if (
-    paint.type &&
-    paint.type.toLowerCase().includes("shade") &&
-    typeof paint.hexColor === "string" &&
-    paint.hexColor.startsWith("#")
-  ) {
-    paint.hexColor = makeShadeGradient(paint.hexColor);
-  }
+  console.log(paint.hexColor)
 });
 
 export default CitadelColors;

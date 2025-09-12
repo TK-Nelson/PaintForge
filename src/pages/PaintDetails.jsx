@@ -78,6 +78,7 @@ const PaintDetail = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setSelectedFilter={setSelectedFilter}
+        onLibraryClick={() => navigate('/')}
       />
 
       {/* Main Content */}
@@ -86,10 +87,7 @@ const PaintDetail = () => {
         <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between lg:min-h-16">
           {/* Back Button */}
           <button
-            onClick={() => {
-              setAnimate(false);
-              setTimeout(() => navigate(-1), 350);
-            }}
+            onClick={() => navigate('/')}
             className="text-blue-600 font-medium mr-4"
           >
             &lt; Back

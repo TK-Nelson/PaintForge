@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PaintDetailsPopup = ({ paint, onClose }) => {
+  const navigate = useNavigate();
+
   if (!paint) return null;
 
   return (
@@ -24,6 +27,15 @@ const PaintDetailsPopup = ({ paint, onClose }) => {
         </button>
         <button className="py-2 px-4 rounded hover:bg-gray-100 text-left" onClick={() => { /* Add to Project logic */ onClose(); }}>
           Add to Project
+        </button>
+        <button
+          className="py-2 px-4 rounded hover:bg-gray-100 text-left"
+          onClick={() => {
+            navigate(`/paints/${paint.id}`);
+            onClose();
+          }}
+        >
+          Color Details
         </button>
         <div className="flex justify-end mt-6">
           <button className="text-blue-600 font-medium mr-4" onClick={onClose}>
