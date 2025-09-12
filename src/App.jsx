@@ -61,10 +61,10 @@ const PaintDashboard = () => {
 
         // Tab filter
         const matchesTab =
-          selectedFilter === '' || // <-- Show all paints if filter is empty (initial load or Paint Library)
-          selectedFilter === 'all' ||
-          (selectedFilter === 'owned' && paint.isOwned) ||
-          (selectedFilter === 'favorites' && paint.isFavorite);
+          selectedFilter === '' // <-- Show all paints if filter is empty (initial load or Paint Library)
+          || selectedFilter === 'all'
+          || (selectedFilter === 'owned' && paint.isOwned)
+          || (selectedFilter === 'favorites' && paint.isFavorite);
 
         // Brand filter
         const matchesBrand =
@@ -115,146 +115,148 @@ const PaintDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 lg:flex">
-      {/* Side Menu */}
-      <SideMenu
-        showSideMenu={showSideMenu}
-        setShowSideMenu={setShowSideMenu}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        setSelectedFilter={setSelectedFilter}
-      />
-
+    <div className="min-h-screen bg-gray-50 flex flex-row">
+      {/* Left Navigation */}
+      <div className="hidden lg:block lg:sticky lg:top-0 h-screen z-50">
+        <SideMenu
+          showSideMenu={showSideMenu}
+          setShowSideMenu={setShowSideMenu}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setSelectedFilter={setSelectedFilter}
+        />
+      </div>
       {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-4 flex items-center lg:min-h-16">
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center">
-              <button
-                onClick={() => setShowSideMenu(true)}
-                className="lg:hidden mr-3"
-              >
-                <Menu className="w-6 h-6" />
-              </button>
-              <h1 className="text-lg font-semibold lg:hidden">Paint Forge</h1>
-              <h1 className="text-lg font-semibold hidden lg:block">
-                {activeTab === 'library' ? 'Paint Library' :
-                  activeTab === 'owned' ? 'My Paints' :
-                    activeTab === 'favorites' ? 'Favorites' : 'Camera'}
-              </h1>
+      <div className="flex-1 flex flex-col">
+        {/* Sticky Top Bar */}
+        <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between min-h-16 sticky top-0 z-40">
+          <div className="flex items-center">
+            <button
+              onClick={() => setShowSideMenu(true)}
+              className="lg:hidden mr-3"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+            <h1 className="text-lg font-semibold lg:hidden">Paint Forge</h1>
+            <h1 className="text-lg font-semibold hidden lg:block">
+              {activeTab === 'library' ? 'Paint Library' :
+                activeTab === 'owned' ? 'My Paints' :
+                  activeTab === 'favorites' ? 'Favorites' : 'Camera'}
+            </h1>
+          </div>
+          <div className="flex items-center space-x-4">
+            <ShoppingCart className="w-6 h-6 text-gray-600" />
+            <Bell className="w-6 h-6 text-gray-600" />
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-semibold text-sm">
+                JD
+              </div>
+              <span className="hidden lg:inline text-gray-700 font-medium text-sm">John Doe</span>
             </div>
-            <div className="flex items-center space-x-4">
-              <ShoppingCart className="w-6 h-6 text-gray-600" />
-              <Bell className="w-6 h-6 text-gray-600" />
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-semibold text-sm">
-                  JD
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1">
+          {/* Tab Navigation - Mobile Only */}
+          <div className="bg-white border-gray-200 lg:hidden">
+            <div className="flex">
+              {[
+                { id: 'library', label: 'Paint Library', icon: '🎨' },
+                { id: 'owned', label: 'My Paints', icon: '📦' },
+                { id: 'favorites', label: 'Favorites', icon: '❤️' },
+                { id: 'camera', label: 'Camera', icon: '📷' }
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setSelectedFilter(tab.id === 'library' ? '' : tab.id);
+                  }}
+                  className={`flex-1 flex flex-col items-center py-3 px-2 ${
+                    activeTab === tab.id ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
+                  }`}
+                >
+                  <span className="text-lg mb-1">{tab.icon}</span>
+                  <span className="text-xs font-medium">{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Paint Grid */}
+          <div className="p-4">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 lg:min-h-16">
+              <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
+              <div className="flex items-center space-x-3">
+                <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  />
                 </div>
-                <span className="hidden lg:inline text-gray-700 font-medium text-sm">John Doe</span>
+                <button
+                  onClick={() => setShowFilters(true)}
+                  className="ml-2 p-2 rounded-full hover:bg-gray-100 relative"
+                >
+                  <Filter className="w-5 h-5 text-gray-500" />
+                  {getActiveFilterCount() > 0 && (
+                    <span className="absolute -bottom-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow">
+                      {getActiveFilterCount()}
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Tab Navigation - Mobile Only */}
-        <div className="bg-white border-gray-200 lg:hidden">
-          <div className="flex">
-            {[
-              { id: 'library', label: 'Paint Library', icon: '🎨' },
-              { id: 'owned', label: 'My Paints', icon: '📦' },
-              { id: 'favorites', label: 'Favorites', icon: '❤️' },
-              { id: 'camera', label: 'Camera', icon: '📷' }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                  setSelectedFilter(tab.id === 'library' ? '' : tab.id);
-                }}
-                className={`flex-1 flex flex-col items-center py-3 px-2 ${
-                  activeTab === tab.id ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
-                }`}
-              >
-                <span className="text-lg mb-1">{tab.icon}</span>
-                <span className="text-xs font-medium">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Paint Grid */}
-        <div className="p-4">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 lg:min-h-16">
-            <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
-            <div className="flex items-center space-x-3">
-              <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                />
+            {/* Grid Items */}
+            <div className="space-y-3">
+              {filteredPaints.map(paint => (
+                <PaintCard key={paint.id} paint={paint} />
+              ))}
+            </div>
+            {filteredPaints.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-500">No paints found</p>
               </div>
-              <button
-                onClick={() => setShowFilters(true)}
-                className="ml-2 p-2 rounded-full hover:bg-gray-100 relative"
-              >
-                <Filter className="w-5 h-5 text-gray-500" />
-                {getActiveFilterCount() > 0 && (
-                  <span className="absolute -bottom-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow">
-                    {getActiveFilterCount()}
-                  </span>
-                )}
-              </button>
+            )}
+          </div>
+
+          {/* Bottom Navigation - Mobile Only */}
+          <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white lg:hidden">
+            <div className="flex">
+              {[
+                { icon: '🎨', label: 'Paints', active: true },
+                { icon: '📋', label: 'Projects', active: false },
+                { icon: '⚙️', label: 'Preferences', active: false }
+              ].map((item, index) => (
+                <button
+                  key={index}
+                  className={`flex-1 flex flex-col items-center py-3 ${
+                    item.active ? 'text-blue-400' : 'text-gray-400'
+                  }`}
+                >
+                  <span className="text-lg mb-1">{item.icon}</span>
+                  <span className="text-xs">{item.label}</span>
+                </button>
+              ))}
             </div>
           </div>
-          {/* Grid Items */}
-          <div className="space-y-3">
-            {filteredPaints.map(paint => (
-              <PaintCard key={paint.id} paint={paint} />
-            ))}
-          </div>
-          {filteredPaints.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500">No paints found</p>
-            </div>
+
+          {/* Filter Modal */}
+          {showFilters && (
+            <FilterModal
+              setShowFilters={setShowFilters}
+              onApply={handleApplyFilters}
+              onClear={handleClearFilters}
+              currentFilters={filterState}
+            />
           )}
         </div>
-
-        {/* Bottom Navigation - Mobile Only */}
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white lg:hidden">
-          <div className="flex">
-            {[
-              { icon: '🎨', label: 'Paints', active: true },
-              { icon: '📋', label: 'Projects', active: false },
-              { icon: '⚙️', label: 'Preferences', active: false }
-            ].map((item, index) => (
-              <button
-                key={index}
-                className={`flex-1 flex flex-col items-center py-3 ${
-                  item.active ? 'text-blue-400' : 'text-gray-400'
-                }`}
-              >
-                <span className="text-lg mb-1">{item.icon}</span>
-                <span className="text-xs">{item.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Filter Modal */}
-        {showFilters && (
-          <FilterModal
-            setShowFilters={setShowFilters}
-            onApply={handleApplyFilters}
-            onClear={handleClearFilters}
-            currentFilters={filterState}
-          />
-        )}
       </div>
     </div>
   );
