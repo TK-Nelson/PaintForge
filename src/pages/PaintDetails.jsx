@@ -30,29 +30,10 @@ const PaintDetail = () => {
   }, [id]);
 
   const getSimilarPaints = (currentPaint, allPaints, threshold = 10) => {
-    // Determine comparison group
-    let filterFn = () => true;
-    if (currentPaint.colorGrouping && currentPaint.colorGrouping.toLowerCase().includes("metalic")) {
-      filterFn = p =>
-        p.id !== currentPaint.id &&
-        p.colorGrouping &&
-        p.colorGrouping.toLowerCase().includes("metalic");
-    } else if (currentPaint.type && currentPaint.type.toLowerCase().includes("shade")) {
-      filterFn = p =>
-        p.id !== currentPaint.id &&
-        p.type &&
-        p.type.toLowerCase().includes("shade");
-    } else {
-      filterFn = p =>
-        p.id !== currentPaint.id &&
-        (!p.colorGrouping || !p.colorGrouping.toLowerCase().includes("metalic")) &&
-        (!p.type || !p.type.toLowerCase().includes("shade"));
-    }
-
     const currentLab = hexToLab(currentPaint.baseHexColor || currentPaint.hexColor);
 
     const results = allPaints
-      .filter(filterFn)
+      .filter(p => p.id !== currentPaint.id)
       .map(paint => {
         const lab = hexToLab(paint.baseHexColor || paint.hexColor);
         const delta = DeltaE.getDeltaE00(
@@ -78,7 +59,6 @@ const PaintDetail = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setSelectedFilter={setSelectedFilter}
-        onLibraryClick={() => navigate('/')}
       />
 
       {/* Main Content */}
@@ -87,7 +67,10 @@ const PaintDetail = () => {
         <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between lg:min-h-16">
           {/* Back Button */}
           <button
-            onClick={() => navigate('/')}
+            onClick={() => {
+              setAnimate(false);
+              setTimeout(() => navigate(-1), 350);
+            }}
             className="text-blue-600 font-medium mr-4"
           >
             &lt; Back

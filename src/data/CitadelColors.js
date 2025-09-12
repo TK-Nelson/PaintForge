@@ -1923,7 +1923,6 @@ CitadelColors.forEach((paint) => {
   ) {
     paint.hexColor = makeMetallicGradient(paint.hexColor);
   }
-  console.log(paint.hexColor)
 });
 
 export default CitadelColors;
