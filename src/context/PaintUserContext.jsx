@@ -3,10 +3,30 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const PaintUserContext = createContext();
 
+const LOCAL_STORAGE_OWNED = 'paintforge_owned';
+const LOCAL_STORAGE_FAVORITES = 'paintforge_favorites';
+
 export const PaintUserProvider = ({ children }) => {
-  const account = null; // or your logic
-  const [myPaints, setMyPaints] = useState([]);
-  const [favoritePaints, setFavoritePaints] = useState([]);
+  // Load from localStorage on mount
+  const [myPaints, setMyPaints] = useState(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_OWNED);
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [favoritePaints, setFavoritePaints] = useState(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_FAVORITES);
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Save to localStorage whenever lists change
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_OWNED, JSON.stringify(myPaints));
+  }, [myPaints]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(favoritePaints));
+  }, [favoritePaints]);
+
+  const account = null; // Add logic if you implement accounts
 
   return (
     <PaintUserContext.Provider value={{
@@ -21,8 +41,4 @@ export const PaintUserProvider = ({ children }) => {
   );
 };
 
-export const usePaintUser = () => {
-  const ctx = useContext(PaintUserContext);
-  console.log('PaintUserContext value:', ctx);
-  return ctx;
-};
+export const usePaintUser = () => useContext(PaintUserContext);
