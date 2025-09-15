@@ -1,31 +1,3 @@
-function lighten(hex, percent) {
-  const num = parseInt(hex.replace("#", ""), 16);
-  let r = (num >> 16) + Math.round(255 * percent);
-  let g = ((num >> 8) & 0x00FF) + Math.round(255 * percent);
-  let b = (num & 0x0000FF) + Math.round(255 * percent);
-  r = Math.min(255, r);
-  g = Math.min(255, g);
-  b = Math.min(255, b);
-  return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
-}
-
-function darken(hex, percent) {
-  const num = parseInt(hex.replace("#", ""), 16);
-  let r = (num >> 16) * (1 - percent);
-  let g = ((num >> 8) & 0x00FF) * (1 - percent);
-  let b = (num & 0x0000FF) * (1 - percent);
-  r = Math.max(0, Math.round(r));
-  g = Math.max(0, Math.round(g));
-  b = Math.max(0, Math.round(b));
-  return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
-}
-
-function makeMetallicGradient(hex) {
-  const light = lighten(hex, 0.4);   // 40% lighter
-  const dark = darken(hex, 0.4);     // 40% darker
-  return `linear-gradient(135deg, ${hex} 0%, ${light} 40%, ${hex} 60%, ${dark} 100%)`;
-}
-
 const CitadelColors = [
   {
     "id": 1,
@@ -1614,15 +1586,5 @@ const CitadelColors = [
   }
 ];
 
-CitadelColors.forEach((paint) => {
-  if (
-    paint.colorGrouping &&
-    paint.colorGrouping.toLowerCase().includes("metalic") &&
-    typeof paint.hexColor === "string" &&
-    paint.hexColor.startsWith("#")
-  ) {
-    paint.hexColor = makeMetallicGradient(paint.hexColor);
-  }
-});
 
 export default CitadelColors;

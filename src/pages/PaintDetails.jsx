@@ -7,7 +7,7 @@ import PaintActionPopup from '../components/PaintDetailsPage/PaintDetailsPopup';
 import RecipesTab, { getRecipeCombinations } from '../components/PaintDetailsPage/RecipesTab';
 import SimilarColorsTab from '../components/PaintDetailsPage/SimilarColorsTab';
 import DeltaE from 'delta-e';
-import { hexToLab } from '../utils/color';
+import { hexToLab, lighten, darken, makeMetallicGradient, makeShadeGradient } from '../utils/color';
 import PaintDetailHeaderMorePopup from '../components/PaintDetailsPage/PaintDetailHeaderMorePopup';
 import { usePaintUser } from '../context/PaintUserContext';
 
@@ -145,7 +145,7 @@ const PaintDetail = () => {
           {tab === 'Similar Color' && (
             <SimilarColorsTab
               paint={paint}
-              paints={paints}
+              paints={paints.filter(p => p.type === paint.type)}
               onSimilarClick={similar => {
                 setSelectedSimilar(similar);
                 setShowPopup(true);
