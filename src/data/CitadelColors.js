@@ -34,8 +34,8 @@ const CitadelColors = [
     "type": "Base",
     "code": "21-25",
     "hexColor": "#1C1C1C",
-    "isFavorite": true,
-    "isOwned": true
+    "colorGrouping": "Black",
+    "isMetallic": false
   },
   {
     "id": 2,
@@ -44,8 +44,8 @@ const CitadelColors = [
     "type": "Old Colour Air",
     "code": "22-50",
     "hexColor": "#636769",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Grey",
+    "isMetallic": false
   },
   {
     "id": 3,
@@ -54,8 +54,8 @@ const CitadelColors = [
     "type": "Layer",
     "code": "22-50",
     "hexColor": "#A4A7A8",
-    "isFavorite": false,
-    "isOwned": true
+    "colorGrouping": "Grey",
+    "isMetallic": false
   },
   {
     "id": 4,
@@ -64,8 +64,8 @@ const CitadelColors = [
     "type": "Shade",
     "code": "22-50",
     "hexColor": "#A67C52",
-    "isFavorite": false,
-    "isOwned": true
+    "colorGrouping": "Brown",
+    "isMetallic": false
   },
   {
     "id": 5,
@@ -74,8 +74,8 @@ const CitadelColors = [
     "type": "Layer",
     "code": "22-76",
     "hexColor": "#1F8F9C",
-    "isFavorite": true,
-    "isOwned": false
+    "colorGrouping": "Blue",
+    "isMetallic": false
   },
   {
     "id": 6,
@@ -84,8 +84,8 @@ const CitadelColors = [
     "type": "Layer",
     "code": "22-13",
     "hexColor": "#295A8A",
-    "isFavorite": false,
-    "isOwned": true
+    "colorGrouping": "Blue",
+    "isMetallic": false
   },
   {
     "id": 7,
@@ -94,8 +94,8 @@ const CitadelColors = [
     "type": "Layer",
     "code": "22-15",
     "hexColor": "#1F56AA",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Blue",
+    "isMetallic": false
   },
   {
     "id": 8,
@@ -104,8 +104,8 @@ const CitadelColors = [
     "type": "Model Air",
     "code": "28-55",
     "hexColor": "#DC143C",
-    "isFavorite": false,
-    "isOwned": true
+    "colorGrouping": "Red",
+    "isMetallic": false
   },
   {
     "id": 9,
@@ -114,8 +114,8 @@ const CitadelColors = [
     "type": "Dry",
     "code": "23-12",
     "hexColor": "#DD482B",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Red",
+    "isMetallic": false
   },
   {
     "id": 10,
@@ -125,9 +125,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#171314",
     "colorGrouping": "Black",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 11,
@@ -137,9 +135,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFFFFF",
     "colorGrouping": "White",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 12,
@@ -149,9 +145,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A2A5A7",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 13,
@@ -161,9 +155,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8BA3A3",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 14,
@@ -173,9 +165,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#3D4539",
     "colorGrouping": "Grey / Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 15,
@@ -185,9 +175,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#39484A",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 16,
@@ -197,9 +185,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#405B71",
     "colorGrouping": "Grey / Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 17,
@@ -209,9 +195,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFFFFF",
     "colorGrouping": "White",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 18,
@@ -221,9 +205,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#C4DDD5",
     "colorGrouping": "Grey / Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 19,
@@ -233,9 +215,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#697068",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 20,
@@ -245,9 +225,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#484B4E",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 21,
@@ -257,9 +235,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8B8893",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 22,
@@ -269,9 +245,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#66656E",
     "colorGrouping": "Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 23,
@@ -281,9 +255,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6D655F",
     "colorGrouping": "Grey / Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 24,
@@ -293,9 +265,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#45413B",
     "colorGrouping": "Grey / Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 25,
@@ -305,9 +275,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6D94B3",
     "colorGrouping": "Grey / Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 26,
@@ -317,9 +285,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#507085",
     "colorGrouping": "Grey / Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 27,
@@ -329,9 +295,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#354D4C",
     "colorGrouping": "Grey / Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 28,
@@ -341,9 +305,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#14100e",
     "colorGrouping": "Black / Grey",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 29,
@@ -353,9 +315,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#960C09",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 30,
@@ -365,9 +325,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#650001",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 31,
@@ -377,9 +335,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#4B213C",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 32,
@@ -389,9 +345,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#E82E1B",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 33,
@@ -401,9 +355,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#C01411",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 34,
@@ -413,9 +365,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#880804",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 35,
@@ -425,9 +375,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#620104",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 36,
@@ -437,9 +385,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#a82a70",
     "colorGrouping": "Red",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 37,
@@ -448,9 +394,7 @@ const CitadelColors = [
     "type": "Base",
     "code": "",
     "hexColor": "#ED3814",
-    "colorGrouping": "Orange",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Orange"
   },
   {
     "id": 38,
@@ -459,9 +403,7 @@ const CitadelColors = [
     "type": "Layer",
     "code": "",
     "hexColor": "#F16C23",
-    "colorGrouping": "Orange",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Orange"
   },
   {
     "id": 39,
@@ -470,9 +412,7 @@ const CitadelColors = [
     "type": "Layer",
     "code": "",
     "hexColor": "#F4874E",
-    "colorGrouping": "Orange",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Orange"
   },
   {
     "id": 40,
@@ -481,9 +421,7 @@ const CitadelColors = [
     "type": "Layer",
     "code": "",
     "hexColor": "#F69B82",
-    "colorGrouping": "Orange",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Orange"
   },
   {
     "id": 41,
@@ -492,9 +430,7 @@ const CitadelColors = [
     "type": "Layer",
     "code": "",
     "hexColor": "#A74D42",
-    "colorGrouping": "Orange",
-    "isFavorite": false,
-    "isOwned": false
+    "colorGrouping": "Orange"
   },
   {
     "id": 42,
@@ -504,9 +440,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#c77e4d",
     "colorGrouping": "Orange",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 43,
@@ -516,9 +450,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FBB81C",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 44,
@@ -528,9 +460,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFD900",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 45,
@@ -540,9 +470,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFF300",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 46,
@@ -552,9 +480,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFE200",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 47,
@@ -564,9 +490,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#FFF55A",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 48,
@@ -576,9 +500,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#fece5a",
     "colorGrouping": "Yellow",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 49,
@@ -588,9 +510,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8CC276",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 50,
@@ -600,9 +520,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6D774D",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 51,
@@ -612,9 +530,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#556229",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 52,
@@ -624,9 +540,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#264715",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 53,
@@ -636,9 +550,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#003D15",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 54,
@@ -648,9 +560,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#0B3B36",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 55,
@@ -660,9 +570,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#06455D",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 56,
@@ -672,9 +580,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#082E32",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 57,
@@ -684,9 +590,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#002C2B",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 58,
@@ -696,9 +600,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#162A29",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 59,
@@ -708,9 +610,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#3DAF44",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 60,
@@ -720,9 +620,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#317E57",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 61,
@@ -732,9 +630,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#0F702A",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 62,
@@ -744,9 +640,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#223C2E",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 63,
@@ -756,9 +650,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#7E975E",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 64,
@@ -768,9 +660,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#96A648",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 65,
@@ -780,9 +670,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6B8C37",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 66,
@@ -792,9 +680,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#597F1C",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 67,
@@ -804,9 +690,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#486C25",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 68,
@@ -816,9 +700,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#7FC1A5",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 69,
@@ -828,9 +710,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#588F6B",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 70,
@@ -840,9 +720,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#17A166",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 71,
@@ -852,9 +730,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#008962",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 72,
@@ -864,9 +740,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#0B6371",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 73,
@@ -876,9 +750,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#00545E",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 74,
@@ -888,9 +760,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#1ba169",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 75,
@@ -900,9 +770,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6d8e44",
     "colorGrouping": "Green",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 76,
@@ -912,9 +780,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#366699",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 77,
@@ -924,9 +790,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#0F3D7C",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 78,
@@ -936,9 +800,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#02134E",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 79,
@@ -948,9 +810,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#00506F",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 80,
@@ -960,9 +820,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#002B5C",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 81,
@@ -972,9 +830,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#2C9BCC",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 82,
@@ -984,9 +840,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#3877BF",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 83,
@@ -996,9 +850,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#4C78AF",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 84,
@@ -1008,9 +860,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#2A497F",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 85,
@@ -1020,9 +870,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#2F4F85",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 86,
@@ -1032,9 +880,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#54BDCA",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 87,
@@ -1044,9 +890,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#239489",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 88,
@@ -1056,9 +900,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#396A70",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 89,
@@ -1068,9 +910,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#9EB5CE",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 90,
@@ -1080,9 +920,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#125899",
     "colorGrouping": "Blue",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 91,
@@ -1092,9 +930,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#655F81",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 92,
@@ -1104,9 +940,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#3B2B50",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 93,
@@ -1116,9 +950,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#440052",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 94,
@@ -1128,9 +960,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#451636",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 95,
@@ -1140,9 +970,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#B598C9",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 96,
@@ -1152,9 +980,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8869AE",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 97,
@@ -1164,9 +990,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#7658A5",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 98,
@@ -1176,9 +1000,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#47125A",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 99,
@@ -1188,9 +1010,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#7a468c",
     "colorGrouping": "Purple",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 100,
@@ -1200,9 +1020,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#7A0E44",
     "colorGrouping": "Pink",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 101,
@@ -1212,9 +1030,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#F3ABCA",
     "colorGrouping": "Pink",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 102,
@@ -1224,9 +1040,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#B74073",
     "colorGrouping": "Pink",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 103,
@@ -1236,9 +1050,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8E2757",
     "colorGrouping": "Pink",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 104,
@@ -1248,9 +1060,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#DBD1B2",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 105,
@@ -1260,9 +1070,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#C0A973",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 106,
@@ -1272,9 +1080,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#988E56",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 107,
@@ -1284,9 +1090,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#B9C099",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 108,
@@ -1296,9 +1100,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#BCBB7E",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 109,
@@ -1308,9 +1110,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#ABA173",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 110,
@@ -1320,9 +1120,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#B7945C",
     "colorGrouping": "Bone",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 111,
@@ -1332,9 +1130,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A86648",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 112,
@@ -1344,9 +1140,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#804C43",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 113,
@@ -1356,9 +1150,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#442B25",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 114,
@@ -1368,9 +1160,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#97A384",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 115,
@@ -1380,9 +1170,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#9C998D",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 116,
@@ -1392,9 +1180,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#EEC483",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 117,
@@ -1404,9 +1190,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#D1A560",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 118,
@@ -1416,9 +1200,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#D1A570",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 119,
@@ -1428,9 +1210,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#D08951",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 120,
@@ -1440,9 +1220,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#C47652",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 121,
@@ -1452,9 +1230,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#996563",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 122,
@@ -1464,9 +1240,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6A4848",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 123,
@@ -1476,9 +1250,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#CACCBB",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 124,
@@ -1488,9 +1260,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A9B79F",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 125,
@@ -1500,9 +1270,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#ca6c4d",
     "colorGrouping": "Flesh",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 126,
@@ -1512,9 +1280,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A1812A",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 127,
@@ -1524,9 +1290,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#6C4811",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 128,
@@ -1536,9 +1300,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#54302A",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 129,
@@ -1548,9 +1310,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#490F06",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 130,
@@ -1560,9 +1320,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#462F30",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 131,
@@ -1572,9 +1330,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#584E2D",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 132,
@@ -1584,9 +1340,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#2B2A24",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 133,
@@ -1596,9 +1350,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#D89D1B",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 134,
@@ -1608,9 +1360,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#A07409",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 135,
@@ -1620,9 +1370,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#BC6B10",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 136,
@@ -1632,9 +1380,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#875408",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 137,
@@ -1644,9 +1390,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#8B4806",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 138,
@@ -1656,9 +1400,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#863231",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 139,
@@ -1668,9 +1410,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#570003",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 140,
@@ -1680,9 +1420,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#AF634F",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 141,
@@ -1692,9 +1430,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#5F463F",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 142,
@@ -1704,9 +1440,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#5F463F",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 143,
@@ -1716,9 +1450,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#d7824b",
     "colorGrouping": "Brown",
-    "isMetallic": false,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": false
   },
   {
     "id": 144,
@@ -1728,9 +1460,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#c16f45",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 145,
@@ -1740,9 +1470,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#b6a89a",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 146,
@@ -1752,9 +1480,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#927d7b",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 147,
@@ -1764,9 +1490,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#888d8f",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 148,
@@ -1776,9 +1500,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#c39e81",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 149,
@@ -1788,9 +1510,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#a47552",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 150,
@@ -1800,9 +1520,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#f1c78e",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 151,
@@ -1812,9 +1530,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#b7885f",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 152,
@@ -1824,9 +1540,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#cbb394",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 153,
@@ -1836,9 +1550,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#b77647",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 154,
@@ -1848,9 +1560,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#fcfcde",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 155,
@@ -1860,9 +1570,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#bbc6c9",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 156,
@@ -1872,9 +1580,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#c3cace",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 157,
@@ -1884,9 +1590,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#a1a6a9",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 158,
@@ -1896,9 +1600,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#e8bc6d",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   },
   {
     "id": 159,
@@ -1908,9 +1610,7 @@ const CitadelColors = [
     "code": "",
     "hexColor": "#d3b587",
     "colorGrouping": "Metalic",
-    "isMetallic": true,
-    "isOwned": false,
-    "isFavorite": false
+    "isMetallic": true
   }
 ];
 

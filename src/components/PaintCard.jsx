@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
-import { Package } from 'lucide-react'; // Import the owned icon (box icon)
+import { Heart, Package } from 'lucide-react';
 
-const PaintCard = ({ paint }) => (
+const PaintCard = ({ paint, isOwned, isFavorite }) => (
   <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
     <Link to={`/paints/${paint.id}`} className="block">
       <div className="flex items-center p-4">
@@ -17,11 +16,11 @@ const PaintCard = ({ paint }) => (
               {paint.name}
             </h3>
             <div className="flex items-center space-x-2 ml-2">
-              {paint.isFavorite && (
+              {isFavorite && (
                 <Heart className="w-4 h-4 text-red-500 fill-current" />
               )}
-              {paint.isOwned && (
-                <Package className="w-4 h-4 text-green-500" /> // Use owned icon
+              {isOwned && (
+                <Package className="w-4 h-4 text-green-500" />
               )}
             </div>
           </div>

@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from 'react';
+import { PaintUserProvider, usePaintUser } from './context/PaintUserContext';
 import { Search, Filter, Menu, Heart, ShoppingCart, Bell } from 'lucide-react';
 import PaintCard from './components/PaintCard';
 import SideMenu from './components/SideMenu';
 import FilterModal from './components/FilterModal';
 import paints from './data/paints';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PaintDetails from './pages/PaintDetails';
 
 // Helper function to categorize paint colors by name or hex
 const getColorCategory = (paint) => {
@@ -35,6 +38,8 @@ const PaintDashboard = () => {
     paintType: '',
   });
 
+  const { account, myPaints, favoritePaints, setMyPaints, setFavoritePaints } = usePaintUser();
+
   // Handle filter modal apply
   const handleApplyFilters = (filters) => {
     setFilterState(filters);
@@ -61,10 +66,10 @@ const PaintDashboard = () => {
 
         // Tab filter
         const matchesTab =
-          selectedFilter === '' // <-- Show all paints if filter is empty (initial load or Paint Library)
-          || selectedFilter === 'all'
-          || (selectedFilter === 'owned' && paint.isOwned)
-          || (selectedFilter === 'favorites' && paint.isFavorite);
+          selectedFilter === '' ||
+          selectedFilter === 'all' ||
+          (selectedFilter === 'owned' && (account ? account.myPaints.includes(paint.id) : myPaints.includes(paint.id))) ||
+          (selectedFilter === 'favorites' && (account ? account.favoritePaints.includes(paint.id) : favoritePaints.includes(paint.id)));
 
         // Brand filter
         const matchesBrand =
@@ -101,7 +106,7 @@ const PaintDashboard = () => {
         }
         return 0;
       });
-  }, [searchTerm, selectedFilter, filterState]);
+  }, [searchTerm, selectedFilter, filterState, myPaints, favoritePaints, account]);
 
   // Helper to count active filters (excluding defaults)
   const getActiveFilterCount = () => {
@@ -216,7 +221,12 @@ const PaintDashboard = () => {
             {/* Grid Items */}
             <div className="space-y-3">
               {filteredPaints.map(paint => (
-                <PaintCard key={paint.id} paint={paint} />
+                <PaintCard
+                  key={paint.id}
+                  paint={paint}
+                  isOwned={account ? account.myPaints.includes(paint.id) : myPaints.includes(paint.id)}
+                  isFavorite={account ? account.favoritePaints.includes(paint.id) : favoritePaints.includes(paint.id)}
+                />
               ))}
             </div>
             {filteredPaints.length === 0 && (
@@ -262,6 +272,15 @@ const PaintDashboard = () => {
   );
 };
 
-const App = () => <PaintDashboard />;
+const App = () => (
+  <PaintUserProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PaintDashboard />} />
+        <Route path="/paints/:id" element={<PaintDetails />} />
+      </Routes>
+    </BrowserRouter>
+  </PaintUserProvider>
+);
 
 export default App;

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import paints from '../data/paints';
 import SideMenu from '../components/SideMenu';
-import { ShoppingCart, Bell } from 'lucide-react';
+import { ShoppingCart, Bell, MoreHorizontal, Heart, Package } from 'lucide-react';
 import PaintActionPopup from '../components/PaintDetailsPage/PaintDetailsPopup';
 import RecipesTab, { getRecipeCombinations } from '../components/PaintDetailsPage/RecipesTab';
 import SimilarColorsTab from '../components/PaintDetailsPage/SimilarColorsTab';
 import DeltaE from 'delta-e';
 import { hexToLab } from '../utils/color';
+import PaintDetailHeaderMorePopup from '../components/PaintDetailsPage/PaintDetailHeaderMorePopup';
+import { usePaintUser } from '../context/PaintUserContext';
 
 const TABS = ['Similar Color', 'Recipes', 'Details'];
 
@@ -22,6 +24,22 @@ const PaintDetail = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSimilar, setSelectedSimilar] = useState(null);
   const [recipes, setRecipes] = React.useState(null);
+  const [showHeaderPopup, setShowHeaderPopup] = useState(false);
+  const context = usePaintUser();
+  console.log('Context in PaintDetails:', context);
+
+  if (!context) {
+    return <div>Context not found. Make sure PaintUserProvider wraps your app.</div>;
+  }
+
+  const { account, myPaints, favoritePaints, setMyPaints, setFavoritePaints } = context;
+
+  const isOwned = account
+    ? account.myPaints && account.myPaints.includes(paint.id)
+    : myPaints.includes(paint.id);
+  const isFavorite = account
+    ? account.favoritePaints && account.favoritePaints.includes(paint.id)
+    : favoritePaints.includes(paint.id);
 
   useEffect(() => {
     setRecipes(null);
@@ -31,6 +49,8 @@ const PaintDetail = () => {
       }, 0);
     }
   }, [paint, paints]);
+
+  
 
   if (!paint) return <div>Paint not found</div>;
 
@@ -72,7 +92,7 @@ const PaintDetail = () => {
         <div
           className="
             px-4 py-6
-            flex flex-col justify-center
+            flex flex-col justify-center relative
             min-h-[120px]
             lg:min-h-0
             lg:h-[40vh] lg:max-h-[calc(100vh-4rem)] lg:py-0
@@ -86,9 +106,25 @@ const PaintDetail = () => {
               : {}),
           }}
         >
-          <h2 className="text-xl font-bold">{paint.name}</h2>
+          <h2 className="text-xl font-bold flex items-center">
+            {paint.name}
+            {isFavorite && (
+              <Heart className="w-5 h-5 text-red-500 ml-2" fill="currentColor" />
+            )}
+            {isOwned && (
+              <Package className="w-5 h-5 text-green-500 ml-2" />
+            )}
+          </h2>
           <div className="text-sm">{paint.brand} &bull; {paint.type}</div>
           <div className="text-xs">{paint.code}</div>
+          {/* More Button */}
+          <button
+            className="absolute top-4 right-4 bg-white bg-opacity-80 rounded-full p-2 hover:bg-opacity-100 transition"
+            onClick={() => setShowHeaderPopup(true)}
+            title="More"
+          >
+            <MoreHorizontal className="w-6 h-6 text-gray-700" />
+          </button>
         </div>
         {/* Tab Navigation */}
         <div className="bg-white border-gray-200">
@@ -142,6 +178,37 @@ const PaintDetail = () => {
             </div>
           )}
         </div>
+        {/* Popup for More actions */}
+        {showHeaderPopup && (
+          <PaintDetailHeaderMorePopup
+            paint={paint}
+            isOwned={isOwned}
+            isFavorite={isFavorite}
+            onToggleOwned={() => {
+              if (account) {
+                // Update account logic here
+              } else {
+                setMyPaints(list =>
+                  isOwned
+                    ? list.filter(pid => pid !== paint.id)
+                    : [...list, paint.id]
+                );
+              }
+            }}
+            onToggleFavorite={() => {
+              if (account) {
+                // Update account logic here
+              } else {
+                setFavoritePaints(list =>
+                  isFavorite
+                    ? list.filter(pid => pid !== paint.id)
+                    : [...list, paint.id]
+                );
+              }
+            }}
+            onClose={() => setShowHeaderPopup(false)}
+          />
+        )}
       </div>
       {showPopup && selectedSimilar && (
         <PaintActionPopup paint={selectedSimilar} onClose={() => setShowPopup(false)} />
