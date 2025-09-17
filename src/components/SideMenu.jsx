@@ -24,20 +24,23 @@ const SideMenu = ({
       {/* Drawer */}
       <div
         className={`
-          fixed top-0 left-0 h-full w-64 bg-white z-50 shadow-lg
+          fixed top-0 left-0 h-full w-64 bg-white z-50
           transition-transform duration-300
+          border-r border-gray-200
           ${showSideMenu ? 'translate-x-0' : '-translate-x-full'}
-          lg:translate-x-0 lg:static lg:block
+          lg:translate-x-0 lg:static lg:block lg:fixed
+          lg:top-0 lg:left-0 lg:h-screen
         `}
         style={{ maxWidth: '80vw' }}
       >
-        {/* Top bar with logo and close button (mobile only) */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 lg:hidden">
+        {/* Logo and close button area */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-[64px]">
           <span className="text-lg font-semibold">Paint Forge</span>
+          {/* Show close button only on mobile */}
           <button
             onClick={() => setShowSideMenu(false)}
             aria-label="Close menu"
-            className="p-2 rounded hover:bg-gray-100"
+            className="p-2 rounded hover:bg-gray-100 lg:hidden"
           >
             <X className="w-6 h-6" />
           </button>

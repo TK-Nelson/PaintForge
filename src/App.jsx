@@ -131,7 +131,7 @@ const PaintDashboard = () => {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64">
         {/* Sticky Top Bar */}
         <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between min-h-16 sticky top-0 z-40">
           <div className="flex items-center">
@@ -163,35 +163,35 @@ const PaintDashboard = () => {
 
         {/* Main Content */}
         <div className="flex-1">
+          {/* Sticky Paints Header (label, search, filter) */}
+          <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between min-h-16 sticky top-[64px] z-30">
+            <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
+            <div className="flex items-center space-x-3">
+              <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(true)}
+                className="ml-2 p-2 rounded-full hover:bg-gray-100 relative"
+              >
+                <Filter className="w-5 h-5 text-gray-500" />
+                {getActiveFilterCount() > 0 && (
+                  <span className="absolute -bottom-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow">
+                    {getActiveFilterCount()}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
           {/* Paint Grid */}
           <div className="p-4">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 lg:min-h-16">
-              <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
-              <div className="flex items-center space-x-3">
-                <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-                  />
-                </div>
-                <button
-                  onClick={() => setShowFilters(true)}
-                  className="ml-2 p-2 rounded-full hover:bg-gray-100 relative"
-                >
-                  <Filter className="w-5 h-5 text-gray-500" />
-                  {getActiveFilterCount() > 0 && (
-                    <span className="absolute -bottom-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow">
-                      {getActiveFilterCount()}
-                    </span>
-                  )}
-                </button>
-              </div>
-            </div>
             {/* Grid Items */}
             <div className="space-y-3">
               {filteredPaints.map(paint => (
