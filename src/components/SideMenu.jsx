@@ -62,11 +62,6 @@ const SideMenu = ({
               id: 'favorites',
               label: 'Favorites',
               icon: '❤️'
-            },
-            {
-              id: 'camera',
-              label: 'Camera',
-              icon: '📷'
             }
           ].map(item => (
             <button

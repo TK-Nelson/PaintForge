@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { PaintUserProvider, usePaintUser } from './context/PaintUserContext';
-import { Search, Filter, Menu, X, ShoppingCart, Bell } from 'lucide-react';
+import { Search, Filter, Menu, X, ShoppingCart, Bell, ScanBarcode } from 'lucide-react';
 import PaintCard from './components/PaintCard';
 import SideMenu from './components/SideMenu';
 import FilterModal from './components/FilterModal';
@@ -186,6 +186,14 @@ const PaintDashboard = () => {
           <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between min-h-16 sticky top-[64px] z-30">
             <h2 className="text-lg font-semibold text-gray-900">Paints</h2>
             <div className="flex items-center space-x-3">
+              {/* Scanner icon - mobile only */}
+              <button
+                className="block lg:hidden p-2 rounded hover:bg-gray-100"
+                aria-label="Open scanner"
+                // onClick={handleScannerClick} // Add your handler here
+              >
+                <ScanBarcode className="w-6 h-6 text-gray-500" />
+              </button>
               <div className="relative w-32 sm:w-40 md:w-56 lg:w-64">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
