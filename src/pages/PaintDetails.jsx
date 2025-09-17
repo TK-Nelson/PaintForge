@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import paints from '../data/paints';
 import SideMenu from '../components/SideMenu';
 import { ShoppingCart, Bell, MoreHorizontal, Heart, Package } from 'lucide-react';
 import PaintActionPopup from '../components/PaintDetailsPage/PaintDetailsPopup';
-import RecipesTab, { getRecipeCombinations } from '../components/PaintDetailsPage/RecipesTab';
 import SimilarColorsTab from '../components/PaintDetailsPage/SimilarColorsTab';
 import DeltaE from 'delta-e';
 import { hexToLab, lighten, darken, makeMetallicGradient, makeShadeGradient } from '../utils/color';
 import PaintDetailHeaderMorePopup from '../components/PaintDetailsPage/PaintDetailHeaderMorePopup';
 import { usePaintUser } from '../context/PaintUserContext';
+
+const RecipesTab = React.lazy(() => import('../components/PaintDetailsPage/RecipesTab'));
 
 const TABS = ['Similar Color', 'Recipes', 'Details'];
 
@@ -23,7 +24,6 @@ const PaintDetail = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSimilar, setSelectedSimilar] = useState(null);
-  const [recipes, setRecipes] = React.useState(null);
   const [showHeaderPopup, setShowHeaderPopup] = useState(false);
   const context = usePaintUser();
   console.log('Context in PaintDetails:', context);
@@ -42,15 +42,12 @@ const PaintDetail = () => {
     : favoritePaints.includes(paint.id);
 
   useEffect(() => {
-    setRecipes(null);
     if (paint && paints) {
       setTimeout(() => {
-        setRecipes(getRecipeCombinations(paint, paints));
+        // Removed setRecipes as it's no longer needed
       }, 0);
     }
   }, [paint, paints]);
-
-  
 
   if (!paint) return <div>Paint not found</div>;
 
@@ -154,7 +151,11 @@ const PaintDetail = () => {
               DeltaE={DeltaE}
             />
           )}
-          {tab === 'Recipes' && <RecipesTab paint={paint} paints={paints} />}
+          {tab === 'Recipes' && (
+            <Suspense fallback={<div>Loading recipes...</div>}>
+              <RecipesTab paint={paint} paints={paints} />
+            </Suspense>
+          )}
           {tab === 'Details' && (
             <div>
               <div><b>Finish Type:</b> {paint.finishType || 'Matte'}</div>

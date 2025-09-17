@@ -78,7 +78,12 @@ const FilterModal = ({ setShowFilters, onApply, onClear, currentFilters }) => {
     >
       <div
         ref={modalRef}
-        className="bg-white w-full max-w-md rounded-xl p-6 mx-4 lg:max-h-none max-h-96 overflow-y-auto"
+        className="
+          bg-white w-full max-w-md rounded-xl p-6 mx-4
+          max-h-[90vh] lg:max-h-none
+          h-[90vh] lg:h-auto
+          overflow-y-auto
+        "
         onMouseDown={e => e.stopPropagation()}
       >
         <h3 className="text-lg font-semibold mb-4">List Filters</h3>

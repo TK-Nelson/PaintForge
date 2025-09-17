@@ -14,7 +14,7 @@ const CitadelColors = [
     "name": "Adeptus Battlegrey",
     "brand": "Citadel",
     "type": "Old Colour Air",
-    "code": "22-50",
+    "code": "",
     "hexColor": "#636769",
     "colorGrouping": "Grey",
     "isMetallic": false

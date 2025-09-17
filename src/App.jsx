@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { PaintUserProvider, usePaintUser } from './context/PaintUserContext';
-import { Search, Filter, Menu, Heart, ShoppingCart, Bell } from 'lucide-react';
+import { Search, Filter, Menu, X, ShoppingCart, Bell } from 'lucide-react';
 import PaintCard from './components/PaintCard';
 import SideMenu from './components/SideMenu';
 import FilterModal from './components/FilterModal';
@@ -121,26 +121,26 @@ const PaintDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-row">
-      {/* Left Navigation */}
-      <div className="hidden lg:block lg:sticky lg:top-0 h-screen z-50">
-        <SideMenu
-          showSideMenu={showSideMenu}
-          setShowSideMenu={setShowSideMenu}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          setSelectedFilter={setSelectedFilter}
-        />
-      </div>
+      {/* SideMenu handles overlay/drawer and tab navigation */}
+      <SideMenu
+        showSideMenu={showSideMenu}
+        setShowSideMenu={setShowSideMenu}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        setSelectedFilter={setSelectedFilter}
+      />
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Sticky Top Bar */}
         <div className="bg-white border-b border-gray-200 px-4 flex items-center justify-between min-h-16 sticky top-0 z-40">
           <div className="flex items-center">
             <button
-              onClick={() => setShowSideMenu(true)}
+              onClick={() => setShowSideMenu(!showSideMenu)}
               className="lg:hidden mr-3"
+              aria-label={showSideMenu ? "Close menu" : "Open menu"}
             >
-              <Menu className="w-6 h-6" />
+              {showSideMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <h1 className="text-lg font-semibold lg:hidden">Paint Forge</h1>
             <h1 className="text-lg font-semibold hidden lg:block">
@@ -163,32 +163,6 @@ const PaintDashboard = () => {
 
         {/* Main Content */}
         <div className="flex-1">
-          {/* Tab Navigation - Mobile Only */}
-          <div className="bg-white border-gray-200 lg:hidden">
-            <div className="flex">
-              {[
-                { id: 'library', label: 'Paint Library', icon: '🎨' },
-                { id: 'owned', label: 'My Paints', icon: '📦' },
-                { id: 'favorites', label: 'Favorites', icon: '❤️' },
-                { id: 'camera', label: 'Camera', icon: '📷' }
-              ].map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    setSelectedFilter(tab.id === 'library' ? '' : tab.id);
-                  }}
-                  className={`flex-1 flex flex-col items-center py-3 px-2 ${
-                    activeTab === tab.id ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
-                  }`}
-                >
-                  <span className="text-lg mb-1">{tab.icon}</span>
-                  <span className="text-xs font-medium">{tab.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Paint Grid */}
           <div className="p-4">
             {/* Header */}
@@ -240,15 +214,19 @@ const PaintDashboard = () => {
           <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white lg:hidden">
             <div className="flex">
               {[
-                { icon: '🎨', label: 'Paints', active: true },
-                { icon: '📋', label: 'Projects', active: false },
-                { icon: '⚙️', label: 'Preferences', active: false }
-              ].map((item, index) => (
+                { id: 'library', icon: '🎨', label: 'Paints' },
+                { id: 'projects', icon: '📋', label: 'Projects' },
+                { id: 'preferences', icon: '⚙️', label: 'Preferences' }
+              ].map((item) => (
                 <button
-                  key={index}
+                  key={item.id}
                   className={`flex-1 flex flex-col items-center py-3 ${
-                    item.active ? 'text-blue-400' : 'text-gray-400'
+                    activeTab === item.id ? 'text-blue-400' : 'text-gray-400'
                   }`}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setSelectedFilter(item.id === 'library' ? '' : item.id);
+                  }}
                 >
                   <span className="text-lg mb-1">{item.icon}</span>
                   <span className="text-xs">{item.label}</span>
