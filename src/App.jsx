@@ -23,6 +23,15 @@ const getColorCategory = (paint) => {
   return '';
 };
 
+// Helper to get RGB string from hex
+const hexToRgbString = (hex) => {
+  if (!hex) return '';
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16);
+  return `${(num >> 16) & 255},${(num >> 8) & 255},${num & 255}`;
+};
+
 const PaintDashboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
@@ -59,10 +68,20 @@ const PaintDashboard = () => {
   const filteredPaints = useMemo(() => {
     return paints
       .filter(paint => {
-        // Search filter
+        // Enhanced search filter
+        const search = searchTerm.toLowerCase();
+        const name = paint.name?.toLowerCase() || '';
+        const hex = paint.hexColor?.toLowerCase() || '';
+        const rgb = hexToRgbString(paint.hexColor);
+        const code = paint.code?.toLowerCase() || '';
+        const colorGroup = getColorCategory(paint);
+
         const matchesSearch =
-          paint.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          paint.brand.toLowerCase().includes(searchTerm.toLowerCase());
+          name.includes(search) ||
+          hex.includes(search) ||
+          rgb.includes(search) ||
+          code.includes(search) ||
+          colorGroup.includes(search);
 
         // Tab filter
         const matchesTab =
@@ -81,7 +100,7 @@ const PaintDashboard = () => {
 
         // Color filter
         const matchesColor =
-          !filterState.color || getColorCategory(paint) === filterState.color;
+          !filterState.color || colorGroup === filterState.color;
 
         return (
           matchesSearch &&
