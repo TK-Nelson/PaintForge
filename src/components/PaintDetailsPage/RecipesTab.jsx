@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DeltaE from 'delta-e';
 import { hexToLab } from '../../utils/color';
 
@@ -96,21 +96,28 @@ export function getRecipeCombinations(targetPaint, paints, threshold = 15, limit
 }
 
 const RecipesTab = ({ paint, paints }) => {
-  const [recipes, setRecipes] = React.useState(null);
+  const [recipes, setRecipes] = useState(null);
 
-  React.useEffect(() => {
-    setRecipes(null); // Show loading state
-    // Run calculation asynchronously
-    setTimeout(() => {
-      const topRecipes = getRecipeCombinations(paint, paints, 15, 10);
-      setRecipes(topRecipes);
-      // Log the top N recipes to the console
-      console.log('Top Recipe Suggestions:', topRecipes.map(recipe => ({
-        names: recipe.paints.map((p, i) => `${p.name} (${recipe.ratios[i]})`).join(' + '),
-        avgHex: recipe.avgHex,
-        delta: recipe.delta
-      })));
-    }, 0);
+  useEffect(() => {
+    const cacheKey = `paintforge_recipe_${paint.id}`;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      setRecipes(JSON.parse(cached));
+    } else {
+      setRecipes(null); // Show loading state
+      // Run calculation asynchronously
+      setTimeout(() => {
+        const topRecipes = getRecipeCombinations(paint, paints, 15, 10);
+        setRecipes(topRecipes);
+        localStorage.setItem(cacheKey, JSON.stringify(topRecipes));
+        // Log the top N recipes to the console
+        console.log('Top Recipe Suggestions:', topRecipes.map(recipe => ({
+          names: recipe.paints.map((p, i) => `${p.name} (${recipe.ratios[i]})`).join(' + '),
+          avgHex: recipe.avgHex,
+          delta: recipe.delta
+        })));
+      }, 0);
+    }
   }, [paint, paints]);
 
   return (

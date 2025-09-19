@@ -1,14 +1,14 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import paints from '../data/paints';
 import SideMenu from '../components/SideMenu';
 import { ShoppingCart, Bell, MoreHorizontal, Heart, Package } from 'lucide-react';
-import PaintActionPopup from '../components/PaintDetailsPage/PaintDetailsPopup';
 import SimilarColorsTab from '../components/PaintDetailsPage/SimilarColorsTab';
 import DeltaE from 'delta-e';
-import { hexToLab, lighten, darken, makeMetallicGradient, makeShadeGradient } from '../utils/color';
+import { hexToLab } from '../utils/color';
 import PaintDetailHeaderMorePopup from '../components/PaintDetailsPage/PaintDetailHeaderMorePopup';
 import { usePaintUser } from '../context/PaintUserContext';
+import DeltaEInfoModal from '../components/PaintDetailsPage/DeltaEInfoModal';
 
 const RecipesTab = React.lazy(() => import('../components/PaintDetailsPage/RecipesTab'));
 
@@ -25,8 +25,9 @@ const PaintDetail = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSimilar, setSelectedSimilar] = useState(null);
   const [showHeaderPopup, setShowHeaderPopup] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [showDeltaEInfo, setShowDeltaEInfo] = useState(false);
   const context = usePaintUser();
-  console.log('Context in PaintDetails:', context);
 
   if (!context) {
     return <div>Context not found. Make sure PaintUserProvider wraps your app.</div>;
@@ -42,12 +43,10 @@ const PaintDetail = () => {
     : favoritePaints.includes(paint.id);
 
   useEffect(() => {
-    if (paint && paints) {
-      setTimeout(() => {
-        // Removed setRecipes as it's no longer needed
-      }, 0);
-    }
-  }, [paint, paints]);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (!paint) return <div>Paint not found</div>;
 
@@ -98,7 +97,7 @@ const PaintDetail = () => {
             background: paint.hexColor,
             color: '#fff',
             height: 'auto',
-            ...(window.innerWidth >= 1024
+            ...(windowWidth >= 1024
               ? { minHeight: '40vh', height: '40vh' }
               : {}),
           }}
@@ -142,13 +141,14 @@ const PaintDetail = () => {
           {tab === 'Similar Color' && (
             <SimilarColorsTab
               paint={paint}
-              paints={paints.filter(p => p.type === paint.type)}
+              paints={paints} // Pass the full paints array!
               onSimilarClick={similar => {
                 setSelectedSimilar(similar);
                 setShowPopup(true);
               }}
               hexToLab={hexToLab}
               DeltaE={DeltaE}
+              onInfoClick={() => setShowDeltaEInfo(true)}
             />
           )}
           {tab === 'Recipes' && (
@@ -210,6 +210,7 @@ const PaintDetail = () => {
             onClose={() => setShowHeaderPopup(false)}
           />
         )}
+        <DeltaEInfoModal open={showDeltaEInfo} onClose={() => setShowDeltaEInfo(false)} />
       </div>
       {showPopup && selectedSimilar && (
         <PaintActionPopup paint={selectedSimilar} onClose={() => setShowPopup(false)} />
